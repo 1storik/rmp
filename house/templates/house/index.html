@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Управление освещением</title>
+  <link type="text/css" href="{% static 'house/css/styles.css' %}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'house/js/scripts.js' %}"></script>
+  <link rel="icon" href="data:;base64,=">
+    <script>
+        $(document).ready(function() {
+            let light_opp = parseInt({{ light_state.room1 }}) /100
+            console.log(parseInt({{ light_state.room1 }}) /100)
+            console.log($("#light_1"))
+            $("#light_1").css("opacity", light_opp);
+        });
+    </script>
+</head>
+<body>
+  <div class="room">
+    <img src="/media/photos/house_schema.jpg" alt="Схема комнаты 1">
+      <div class="main">
+          <div class="lighting" >
+          <h3>Состояние освещения комната 1</h3>
+          <p id="light_state_room1" data-room1="{{ light_state.room1 }}">{{ light_state.room1 }}</p>
+            <form method="POST" action="{% url 'house' %}">
+                {% csrf_token %}
+                <label class="brightness-label">Яскравість освітлення:</label>
+                <input onchange="document.getElementById('button_opacity').click()" name="light_opacity" id="scrollBar"
+                        type="range" min="0" max="100" step="10" value="{{ light_state.room1 }}" class="brightness-slider">
+                <span class="brightness-value">{{ light_state.room1 }}%</span>
+                <button type="submit" id="button_opacity" style="display: none"></button>
+            </form>
+        </div>
+          <div class="lighting">
+          <h3>Состояние освещения комната 2</h3>
+          <p id="light_state_room2" data-room2="{{ light_state.room2 }}">{{ light_state.room2 }}</p>
+            <form method="POST" action="{% url 'house' %}">
+                {% csrf_token %}
+                <input type="submit" name="light_on_room2" value="Включить свет" class="sub">
+                <input type="submit" name="light_off_room2" value="Выключить свет" class="sub">
+            </form>
+        </div>
+          <div class="lighting">
+          <h3>Состояние освещения комната 3</h3>
+          <p id="light_state_room3" data-room3="{{ light_state.room3 }}">{{ light_state.room3 }}</p>
+            <form method="POST" action="{% url 'house' %}">
+                {% csrf_token %}
+                <input type="submit" name="light_on_room3" value="Включить свет" class="sub">
+                <input type="submit" name="light_off_room3" value="Выключить свет" class="sub">
+            </form>
+        </div>
+          <div class="lighting">
+          <h3>Состояние освещения комната 4</h3>
+          <p id="light_state_room4" data-room4="{{ light_state.room4 }}">{{ light_state.room4 }}</p>
+            <form method="POST" action="{% url 'house' %}">
+                {% csrf_token %}
+                <input type="submit" name="light_on_room4" value="Включить свет" class="sub">
+                <input type="submit" name="light_off_room4" value="Выключить свет" class="sub">
+            </form>
+        </div>
+        <div class="temperature">
+          <h3>Температура</h3>
+          <p id="temperature-value" data-temperature="{{ temperature }}">{{ temperature }}°C</p>
+        </div>
+         <div class="brightness-control">
+
+        </div>
+    </div>
+      <div class="status-indicator" id="light_1"></div>
+      <div class="status-indicator" id="light_2"></div>
+      <div class="status-indicator" id="light_3"></div>
+      <div class="status-indicator" id="light_4"></div>
+  </div>
+</body>
+</html>

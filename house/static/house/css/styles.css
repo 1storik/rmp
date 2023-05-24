@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.room {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.functionality {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.lighting,
+.temperature {
+  width: 20%;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.sub {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.sub:hover {
+  background-color: #45a049;
+}
+
+.status-indicator {
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  border-radius: 50%;
+  position: absolute;
+}
+
+#light_1{
+  width: 150px;
+  height: 150px;
+  top: 150px;
+  left: 100px;
+  opacity: 0.9;
+}
+
+#light_2{
+  width: 100px;
+  height: 100px;
+  top: 300px;
+  left: 400px;
+  opacity: 0.9;
+}
+
+#light_3{
+  width: 100px;
+  height: 100px;
+  top: 150px;
+  left: 460px;
+  opacity: 0.9;
+}
+
+#light_4{
+  width: 100px;
+  top: 50px;
+  left: 420px;
+  opacity: 0.9;
+}
+
+.main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  height: 50vh;
+}
+
+.brightness-control {
+
+    }
+
+.brightness-slider {
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.brightness-label {
+  margin-bottom: 10px;
+}
+
+.brightness-value {
+  font-weight: bold;
+}
+
