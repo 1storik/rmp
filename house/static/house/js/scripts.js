@@ -1,6 +1,4 @@
 function updateTemperature() {
-  let csrfToken = $('#csrf-token').val();
-  console.log("321321")
   $.ajax({
     url: '/get_temperature/',
     type: 'POST',
@@ -16,7 +14,7 @@ function updateTemperature() {
   });
 }
 
-setInterval(updateTemperature, 1000);
+setInterval(updateTemperature, 3000);
 
 
 // Функция для обновления статуса освещения
