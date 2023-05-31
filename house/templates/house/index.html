@@ -5,16 +5,11 @@
   <title>Управление освещением</title>
   <link type="text/css" href="{% static 'house/css/styles.css' %}" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="{% static 'house/js/scripts.js' %}"></script>
+  <script src="{% static 'house/js/scripts.js' %}?v={{ timestamp }}"></script>
   <link rel="icon" href="data:;base64,=">
     <script>
-        $(document).ready(function() {
-            let light_opp = parseInt({{ light_state.room1 }}) /100
-            console.log(parseInt({{ light_state.room1 }}) /100)
-            console.log($("#light_1"))
-            $("#light_1").css("opacity", light_opp);
-        });
-        var csrfToken = '{{ csrf_token }}'
+        let light_opp = parseInt({{ light_state.room1 }}) /100
+        let csrfToken = '{{ csrf_token }}'
     </script>
 </head>
 <body>
@@ -62,16 +57,27 @@
         </div>
         <div class="temperature">
           <h3>Температура</h3>
-          <p id="temperature-value" data-temperature="{{ temperature }}">{{ temperature }}°C</p>
+          <p id="temperature-value" ></p>
+            <h3>Подогрев</h3>
+          <p id="is_heating"></p>
         </div>
-         <div class="brightness-control">
 
-        </div>
     </div>
       <div class="status-indicator" id="light_1"></div>
       <div class="status-indicator" id="light_2"></div>
       <div class="status-indicator" id="light_3"></div>
       <div class="status-indicator" id="light_4"></div>
   </div>
+<form method="POST" id="threshold-form" action="{% url 'change_threshold' %}">
+    {% csrf_token %}
+    <input type="text" name="LOW" value="{{ LOWTHRESHOLD }}">
+    <input type="text" name="HIGH" value="{{ HIGHTHRESHOLD }}">
+    <input type="submit" name="THRESHOLD" value="Изменить пороги">
+</form>
+{#<script>#}
+{#         document.getElementById('threshold-form').addEventListener('submit', function(event) {#}
+{#         event.preventDefault();#}
+{#     })#}
+{#</script>#}
 </body>
 </html>

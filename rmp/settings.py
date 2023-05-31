@@ -129,3 +129,4 @@ MEDIA_URL = '/media/'
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'Strict'
+

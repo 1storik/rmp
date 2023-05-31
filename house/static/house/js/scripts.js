@@ -1,20 +1,27 @@
-function updateTemperature() {
-  $.ajax({
-    url: '/get_temperature/',
-    type: 'POST',
-    beforeSend: function(xhr, settings) {
-      xhr.setRequestHeader("X-CSRFToken", csrfToken);
-    },
-    success: function(response) {
-      $('#temperature-value').text(response.temperature + '°C');
-    },
-    error: function(error) {
-      console.log('Произошла ошибка:', error);
-    }
-  });
-}
+console.log("33333333")
 
-setInterval(updateTemperature, 3000);
+$(document).ready(function() {
+            $("#light_1").css("opacity", light_opp);
+        });
+function updateTemperature() {
+      $.ajax({
+        url: '/get_temperature/',
+        type: 'POST',
+        beforeSend: function(xhr, settings) {
+          xhr.setRequestHeader("X-CSRFToken", csrfToken);
+        },
+        success: function(response) {
+          $('#temperature-value').text(response.temperature + '°C');
+          console.log("11111111")
+          $('#is_heating').text(response.is_heating);
+        },
+        error: function(error) {
+          console.log('Произошла ошибка:', error);
+        }
+      });
+    }
+
+setInterval(updateTemperature, 10000);
 
 
 // Функция для обновления статуса освещения
@@ -47,7 +54,7 @@ function updateLightStatus() {
   }
 }
 
-// Вызов функции при загрузке страницы
+// // Вызов функции при загрузке страницы
 $(document).ready(function() {
   updateLightStatus();
 });
